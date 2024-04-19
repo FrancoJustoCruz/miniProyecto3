@@ -1,0 +1,40 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mainComponent {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    padding: 20px;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .card {
+    width: calc(50% - 10px); /* Para que haya un pequeño espacio entre las tarjetas */
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para las tarjetas */
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .card > div {
+    margin-top: 10px;
+  }
+  
+  /* Estilos específicos para dispositivos más pequeños */
+  @media screen and (max-width: 768px) {
+    .card {
+      width: 100%; /* En dispositivos pequeños, las tarjetas ocuparán todo el ancho */
+    }
+  }
