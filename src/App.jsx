@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Header } from './Components/HeaderComponent/Header';
+import { Header } from './Components/NavComponent/Nav';
 import staysData from './assets/stays.json';
+import Card from './Components/CardComponent/Card';
 
 function App() {
   const [stays, setStays] = useState([]);
@@ -9,14 +10,12 @@ function App() {
   const [searchText, setSearchText] = useState('');
   const [searchGuests, setSearchGuests] = useState('');
   const [modalInputValue, setModalInputValue] = useState('');
-  const [totalGuests, setTotalGuests] = useState(0); // Cambiado a número, no string
-  const options = ["Helsinki, Finland", "Turku, Finland", "Vaasa, Finland", "Oulu, Finland"];
+  const [totalGuests, setTotalGuests] = useState(0);
 
   useEffect(() => {
     setStays(staysData);
     setFilteredStays(staysData);
     
-    // Calcular el número total de huéspedes inicial y actualizar el estado
     const totalInitial = staysData.reduce((acc, stay) => acc + stay.maxGuests, 0);
     setTotalGuests(totalInitial);
   }, []);
@@ -35,6 +34,7 @@ function App() {
   
     setFilteredStays(filtered);
   };
+
   const handleSearch = (text, totalGuests) => {
     setSearchText(text);
     setTotalGuests(totalGuests);
@@ -45,6 +45,7 @@ function App() {
     setSearchGuests(total);
     filterStays(searchText, total);
   };
+
   const handleModalButtonClick = () => {
     filterStays(modalInputValue, searchGuests);
     setModalInputValue('');
@@ -55,28 +56,16 @@ function App() {
       <Header onSearch={(text, totalGuests) => handleSearch(text, totalGuests)} onTotalGuestsChange={handleTotalGuestsChange} />
       <div className='mainComponent'>
         <h1>Stays in Finland</h1>
-        <span>{filteredStays.length} stays</span>
-        <span>{searchText}</span>
-        <span>Total guests: {totalGuests}</span>
+        <div className='oculto'>
+          <span>{filteredStays.length} stays</span>
+          <span>{searchText}</span>
+          <span>Total guests: {totalGuests}</span>
+        </div>
         {modalInputValue && <p>Location selected from Modal: {modalInputValue}</p>}
         
         <div className='cards-container'>
           {filteredStays.map((stay, index) => (
-            <div key={index} className='card'>
-              <div>
-                <img src={stay.photo} alt={stay.title}/>
-              </div>
-              <div>
-                <span>{stay.type}. {stay.beds} beds</span>
-                {stay.superHost && <div>Super Host</div>}
-              </div>
-              <div>
-                <span>{stay.rating}</span>
-              </div>
-              <div>
-                {stay.title}
-              </div>
-            </div>
+            <Card key={index} stay={stay} />
           ))}
         </div>
       </div>

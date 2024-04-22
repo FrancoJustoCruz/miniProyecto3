@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .card img {
+    border-radius: 3xl;
+    object-fit: cover;
+    width: 410px;
+    height: 270px;
+    border-radius: 1rem;
+  }
+  
+  .card .img-container {
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 2rem;
+  }
+  
+  .superhost-container {
+    cursor: default;
+    display: inline-block;
+    padding: 0.50rem 0.5rem;
+    margin-right: 0.75rem;
+    border: 1px solid #4b5563;
+    color: #4b5563;
+    border-radius: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 1000;
+  }
+  
+  .infoContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem; /* Ajustar el margen derecho para separarlo del borde de la tarjeta */
+  }
+  
+  .icon-container {
+    color: rgb(235, 87, 87);
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
