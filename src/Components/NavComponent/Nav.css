@@ -1,0 +1,112 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.logo{
+  width: 11rem;
+}
+.botonesContainer {
+  display: flex; /* Hace que los elementos dentro del contenedor sean flexibles */
+  justify-content: center; /* Centra los elementos horizontalmente dentro del contenedor */
+  margin-top: 1rem; /* Establece un margen superior de 2.25 rem */
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sm\:m-0 {
+    margin: 0; /* Establece un margen de 0 para dispositivos con al menos 640px de ancho */
+  }
+}
+.botonesBusqueda {
+  position: relative; /* Posición relativa para permitir el posicionamiento absoluto de elementos hijos */
+  z-index: 0; /* Establece el índice z en 0 para que esté en el mismo nivel que otros elementos */
+  display: inline-flex; /* Hace que los elementos dentro del contenedor sean flexibles y se muestren en línea */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para el efecto de elevación */
+  border-radius: 2rem; /* Borde redondeado */
+}
+
+.search-wrapper {
+  position: relative; /* Posición relativa para permitir el posicionamiento absoluto de elementos hijos */
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra elevada */
+}
+
+.rounded-2xl {
+  border-radius: 2rem; /* Borde redondeado */
+}
+.botonCiudad {
+  display: inline-flex; /* Mostrar como elemento flex en línea */
+  align-items: center; /* Centrar verticalmente */
+  padding: 1rem 2rem; /* Padding interno */
+  border: 0.5px solid rgba(0, 0, 0, 0.1); /* Borde sólido con opacidad */
+  background-color: #fff; /* Color de fondo */
+  font-size: 1.25rem; /* Tamaño de fuente */
+  color: #333; /* Color de texto */
+  transition: all 0.3s ease-in-out; /* Transición suave */
+  border-radius: 2rem 0 0 2rem; /* Borde redondeado */
+  outline: none; /* Eliminar el contorno de enfoque */
+}
+
+.botonCiudad:hover {
+  color: #666; /* Cambio de color de texto al pasar el ratón */
+}
+
+.botonCiudad:focus {
+  z-index: 10; /* Incremento del índice Z para enfocar */
+  border-color: #63b3ed; /* Color de borde al enfocar */
+}
+.botonGuests {
+  display: inline-flex; /* Mostrar como elemento flex en línea */
+  align-items: center; /* Centrar verticalmente */
+  padding: 1rem 2rem; /* Padding interno */
+  border: 0.5px solid rgba(0, 0, 0, 0.1); /* Borde sólido con opacidad */
+  background-color: #fff; /* Color de fondo */
+  font-size: 1.25rem; /* Tamaño de fuente */
+  color: rgba(0, 0, 0, 0.7); /* Color de texto con opacidad */
+  transition: all 0.3s ease-in-out; /* Transición suave */
+   /* Borde redondeado */
+  outline: none; /* Eliminar el contorno de enfoque */
+}
+
+.botonGuests:hover {
+  color: #666; /* Cambio de color de texto al pasar el ratón */
+}
+
+.botonGuests:focus {
+  z-index: 10; /* Incremento del índice Z para enfocar */
+  border-color: #63b3ed; /* Color de borde al enfocar */
+}
+.searchButton {
+  display: inline-flex; /* Mostrar como elemento flex en línea */
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  padding: 1rem 2rem; /* Padding interno */
+  border: 0.5px solid rgba(0, 0, 0, 0.1); /* Borde sólido con opacidad */
+  background-color: #fff; /* Color de fondo */
+  font-size: 1.25rem; /* Tamaño de fuente */
+  color: rgb(235, 87, 87); /* Color de texto con opacidad */
+  transition: all 0.3s ease-in-out; /* Transición suave */
+  border-radius: 0 2rem 2rem 0; /* Borde redondeado */
+  outline: none; /* Eliminar el contorno de enfoque */
+}
+
+.searchButton:hover {
+  color: #666; /* Cambio de color de texto al pasar el ratón */
+}
+
+.searchButton:focus {
+  z-index: 10; /* Incremento del índice Z para enfocar */
+  border-color: #63b3ed; /* Color de borde al enfocar */
+}

@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
+import RoomIcon from '@mui/icons-material/Room';
+import SearchIcon from '@mui/icons-material/Search';
 
 function Modal({ onClose, onSearch, filterStays, onTotalGuestsChange }) {
   const options = ["Helsinki, Finland", "Turku, Finland", "Vaasa, Finland", "Oulu, Finland"];
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isCounterVisible, setIsCounterVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [adultCounter, setAdultCounter] = useState(0);
   const [childrenCounter, setChildrenCounter] = useState(0);
   const [totalGuests, setTotalGuests] = useState(0);
-  const [isCounterVisible, setIsCounterVisible] = useState(false);
-  const [searchClicked, setSearchClicked] = useState(false); // Nuevo estado
+  const [searchClicked, setSearchClicked] = useState(false);
 
   useEffect(() => {
     setTotalGuests(adultCounter + childrenCounter);
   }, [adultCounter, childrenCounter]);
-
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -43,23 +41,32 @@ function Modal({ onClose, onSearch, filterStays, onTotalGuestsChange }) {
     }
   };
 
-  const filteredOptions = options.filter(option => option.toLowerCase().includes(searchText.toLowerCase()));
-
   const handleOptionClick = (option) => {
     setSearchText(option);
+    setIsDropdownVisible(false);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+    setIsCounterVisible(false);
+  };
+
+  const toggleCounter = () => {
+    setIsCounterVisible(!isCounterVisible);
+    setIsDropdownVisible(false);
   };
 
   const handleButtonClick = () => {
-    setIsCounterVisible(!isCounterVisible);
+    toggleCounter();
     if (onTotalGuestsChange) {
-      onTotalGuestsChange(totalGuests); // Llama a la función de cambio de total de huéspedes
+      onTotalGuestsChange(totalGuests);
     }
   };
 
   const handleSearchButtonClick = () => {
-    setSearchClicked(true); // Indica que se hizo clic en el botón de búsqueda
+    setSearchClicked(true);
     if (onSearch) {
-      onSearch(searchText, totalGuests); // Envía la ubicación y el número total de huéspedes
+      onSearch(searchText, totalGuests);
     }
     onClose();
   };
@@ -67,54 +74,73 @@ function Modal({ onClose, onSearch, filterStays, onTotalGuestsChange }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className='modalMain'>
-          <div className='parteSuperiorModal'></div>
-          <div className='parteInferiorModal'>
-            <div className='contenedorInferior'>
-              <div className='contenedorInput boton1' onClick={toggleDropdown}>
-                <span className='span'>Location</span>
-                <input
-                  className='input'
-                  type="text"
-                  placeholder="Whole, Finland"
-                  value={searchText}
-                  onChange={handleInputChange}
-                />
+        <div className="modalMain">
+          <header className="modal-header">
+            <div className="header-left">
+              <h1>Edit your search</h1>
+            </div>
+            <div className="header-right">
+              <button className="cerrar" onClick={onClose}>X</button>
+            </div>
+          </header>
+          <div className="parteSuperiorModal"></div>
+          <div className="parteInferiorModal">
+            <div className="contenedorInferior">
+              <div className="contenedorInputBoton1" onClick={toggleDropdown}>
+                <div className="input-container">
+                  <span className="span">Location</span>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Whole, Finland"
+                    value={searchText}
+                    onChange={handleInputChange}
+                  />
+                </div>
               </div>
-              <button className='boton2' onClick={handleButtonClick}>
-                <span>Guests</span>
-                <div className='guests-total'>{totalGuests}</div>
+              <button className="boton2" onClick={handleButtonClick}>
+                <span className='span'>Guests</span>
+                <div className="guests-total">{totalGuests}</div>
               </button>
-              <button className='boton3' onClick={handleSearchButtonClick}>Search</button>
+              <button className="boton3" onClick={handleSearchButtonClick}>
+                <SearchIcon/>Search
+              </button>
             </div>
           </div>
           <div className="dropdown-container">
             {isDropdownVisible && (
               <div className="dropdown">
-                {filteredOptions.map((option, index) => (
-                  <button key={index} onClick={() => handleOptionClick(option)}>{option}</button>
+                {options.map((option, index) => (
+                  <button key={index} onClick={() => handleOptionClick(option)}>
+                    <div className="dropdown-content">
+                      <RoomIcon />
+                      <span>{option}</span>
+                    </div>
+                  </button>
                 ))}
               </div>
             )}
             {isCounterVisible && (
               <div className="counter">
-                <div className='adult'>
+                <div className="adult">
                   <span><strong>Adult</strong></span>
+                  <br />
                   <br/>
-                  <span>Age 13 or above</span>
-                  <br></br>
+                  <span className='textoContador'>Age 13 or above</span>
+                  <br/>
                   <button onClick={handleAdultDecrement}>-</button>
-                  <span>{adultCounter}</span>
+                  <span className='contadorAdulto'>{adultCounter}</span>
                   <button onClick={handleAdultIncrement}>+</button>
                 </div>
-                <br></br>
-                <div className='children'>
+                <br/>
+                <div className="children">
                   <span><strong>Children</strong></span>
                   <br/>
-                  <span>Age 2-12</span>
-                  <br></br>
+                  <br />
+                  <span >Age 2-12</span>
+                  <br/>
                   <button onClick={handleChildrenDecrement}>-</button>
-                  <span>{childrenCounter}</span>
+                  <span className='contadorChildren'>{childrenCounter}</span>
                   <button onClick={handleChildrenIncrement}>+</button>
                 </div>
               </div>

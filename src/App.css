@@ -1,40 +1,136 @@
 .mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .mainComponent {
-    width: 100%;
-    max-width: 1200px; /* Ancho máximo para el contenido */
-    padding: 20px;
-  }
-  
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.mainComponent {
+  margin-top: 5rem;
+}
+
+.header {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Mulish', sans-serif;
+  align-items: center;
+}
+
+.header h1 {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 7rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, auto));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
   .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    grid-template-columns: repeat(2, minmax(0, auto));
+    gap: 1.5rem;
   }
-  
-  .card {
-    width: calc(50% - 10px); /* Para que haya un pequeño espacio entre las tarjetas */
-    margin-bottom: 20px;
+}
+
+@media (min-width: 1024px) {
+  .cards-container {
+    grid-template-columns: repeat(3, minmax(0, auto));
+    gap: 2rem;
   }
-  
-  /* Estilos para las tarjetas */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.card img {
+  border-radius: 3xl;
+  object-fit: cover;
+  width: 410px;
+  height: 270px;
+  border-radius: 1rem;
+}
+
+@media (min-width: 1024px) {
   .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 450px;
+    height: 300px;
   }
-  
-  .card > div {
-    margin-top: 10px;
+}
+
+.card .img-container {
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+@media (min-width: 640px) {
+  .card .img-container {
+    height: 11rem;
   }
-  
-  /* Estilos específicos para dispositivos más pequeños */
-  @media screen and (max-width: 768px) {
-    .card {
-      width: 100%; /* En dispositivos pequeños, las tarjetas ocuparán todo el ancho */
-    }
+}
+
+@media (min-width: 768px) {
+  .card .img-container {
+    height: 9rem;
   }
+}
+
+@media (min-width: 1024px) {
+  .card .img-container {
+    height: 12rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .card .img-container {
+    height: 16rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .card .img-container {
+    height: 18rem;
+  }
+}
+
+.superhost-container {
+  cursor: default;
+  display: inline-block;
+  padding: 0.50rem 0.5rem;
+  margin-right: 0.75rem;
+  border: 1px solid #4b5563;
+  color: #4b5563;
+  border-radius: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 1000;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.rating {
+  margin-left: auto;
+}
+
+.icon-container {
+  color: rgb(235, 87, 87);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.oculto {
+  display: none;
+}
